@@ -22,9 +22,7 @@ def get_total_path(m, n):
     nums = [1 for _ in range(n)]
     for i in range(m-1):
         for j in range(n):
-            if j == 0:
-                nums[j] = 1
-            else:
+            if j != 0:
                 nums[j] = nums[j - 1] + nums[j]
     return nums
 
