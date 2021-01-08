@@ -1,0 +1,19 @@
+def printTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[str]]
+        """
+        h = self.get_depth(root)
+        ans = [['']*(2**h-1) for _ in range(h)]
+        self.fill_tree(0,0,2**h-1,root,ans)
+        return ans
+    def fill_tree(self,i,l,r,root,ans):
+        if not root:
+            return 
+        ans[i][(l+r)/2] = str(root.val)
+        self.fill_tree(i+1,l,(r+l)/2,root.left,ans)
+        self.fill_tree(i+1,(l+r+1)/2,r,root.right,ans)
+    def get_depth(self,root):
+        if not root:
+            return 0
+        return 1 + max(self.get_depth(root.right),self.get_depth(root.left))
